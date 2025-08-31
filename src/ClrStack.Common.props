@@ -3,7 +3,9 @@
     <PropertyGroup>
         <OutputType>Exe</OutputType>
         <!-- The same target as for as Microsoft.Diagnostics.Runtime -->
-        <TargetFrameworks>netcoreapp3.1;netstandard2.0;net461;net5.0</TargetFrameworks>
+        <TargetFrameworks Condition="'$(JetBuild)' != 'true'">netcoreapp3.1;netstandard2.0;net461;net5.0</TargetFrameworks>
+        <!--Current target runtimes for JetBrains.Microsoft.Diagnostics.Runtime -->
+        <TargetFrameworks Condition="'$(JetBuild)' == 'true'">net472;net6.0;net8.0</TargetFrameworks>
         <OutputPath>$(MSBuildThisFileDirectory)..\build</OutputPath>
         <RootNamespace>ClrStack</RootNamespace>
         <SignAssembly>true</SignAssembly>
